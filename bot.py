@@ -15,7 +15,7 @@ from jdb import Jdb
 DP = Dispatcher()
 
 CP = configparser.ConfigParser()
-CP.read('config.ini')
+CP.read('devconf.ini')
 
 TOKEN = CP.get('BOT', 'TOKEN')
 USERS_DIR = CP.get('USERS', 'USERS_DIR')
