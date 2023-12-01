@@ -21,15 +21,21 @@ TOKEN = CP.get('BOT', 'TOKEN')
 USERS_DIR = CP.get('USERS', 'USERS_DIR')
 DB = Jdb(os.path.join(USERS_DIR, 'jdb.json'))
 
-help_text = 'Отправь мне видео, укажи начало и конец записи которые хочешь сохранить, а я обрежу лишнее =)'
+help_text = 'Отправь мне видео, укажи начало и конец записи которые хочешь сохранить, а я обрежу лишнее =)\n'\
+            'В таком формате: 01.04.09'
 
 
 @DP.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
     chat = message.chat
-    chat_id = message.chat.id
-    fullname = message.from_user.full_name
-    print(chat)
+    user = message.from_user
+    chat_id = chat.id
+    user_id = user.id
+    username = user.username if user.username !='' else user.username
+    fullname = user.full_name
+
+    DB.add_user(user_id, chat_id, username)
+    
     await message.answer(f"Привет, {hbold(fullname)}!")
     await command_help_handler(message)
 
