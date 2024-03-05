@@ -1,4 +1,5 @@
-/venv
+.venv
+venv
 devconf.ini
 /jdb/__pycache__
 /__pycache__
